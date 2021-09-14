@@ -14,7 +14,7 @@ namespace UrlShortener.Tests
         public void ShouldDecodeACodeToAURLThenRedirect()
         {
             // Arrange
-            var testUrl = "http://www.musclefood.co.uk";
+            var testUrl = "http://www.musclefood.com";
             var request = new UrlDto() { Url = testUrl };
             var mockLoggerEncode = new Mock<ILogger<EncodeController>>();
             var mockLoggerFollow = new Mock<ILogger<FollowController>>();

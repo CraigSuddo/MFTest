@@ -13,7 +13,7 @@ namespace UrlShortener.Tests
         public void ShouldDecodeACodeToAURL()
         {
             // Arrange
-            var testUrl = "http://www.musclefood.co.uk";
+            var testUrl = "http://www.musclefood.com";
             var request = new UrlDto() { Url = testUrl };
             var mockLoggerEncode = new Mock<ILogger<EncodeController>>();
             var mockLoggerDecode = new Mock<ILogger<DecodeController>>();

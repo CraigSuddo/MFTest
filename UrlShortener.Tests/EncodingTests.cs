@@ -34,7 +34,7 @@ namespace UrlShortener.Tests
         {
             // Arrange
             var requestA = new UrlDto() { Url = "http://www.google.com" };
-            var requestB = new UrlDto() { Url = "http://www.musclefood.co.uk" };
+            var requestB = new UrlDto() { Url = "http://www.musclefood.com" };
             var mockLogger = new Mock<ILogger<EncodeController>>();
             var mockStore = new Mock<IStore>();
             var controller = new EncodeController(mockLogger.Object, mockStore.Object);
@@ -53,8 +53,8 @@ namespace UrlShortener.Tests
         public void ShouldGetTheSameShortURLForTheSameRequestTwice()
         {
             // Arrange
-            var requestA = new UrlDto() { Url = "http://www.musclefood.co.uk" };
-            var requestB = new UrlDto() { Url = "http://www.musclefood.co.uk" };
+            var requestA = new UrlDto() { Url = "http://www.musclefood.com" };
+            var requestB = new UrlDto() { Url = "http://www.musclefood.com" };
             var mockLogger = new Mock<ILogger<EncodeController>>();
             var store = new Store();
             var controller = new EncodeController(mockLogger.Object, store);
