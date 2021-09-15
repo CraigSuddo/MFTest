@@ -27,6 +27,7 @@ namespace UrlShortener
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UrlShortener", Version = "v1" });
             });
 
+            // Registering my Store as a Singleton so that it exists in memory as a single instance which can be used to mimic saving.
             services.AddSingleton<IStore, Store>();
         }
 

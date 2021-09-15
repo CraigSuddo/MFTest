@@ -16,6 +16,9 @@ namespace UrlShortener.Logic
     {
         public List<ProcessedUrl> ProcessedUrls { get; set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Store()
         {
             ProcessedUrls = new List<ProcessedUrl>();
