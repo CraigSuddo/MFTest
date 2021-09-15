@@ -19,7 +19,8 @@ namespace UrlShortener.Tests
             var mockLoggerEncode = new Mock<ILogger<EncodeController>>();
             var mockLoggerFollow = new Mock<ILogger<FollowController>>();
             var store = new Store();
-            var encodeController = new EncodeController(mockLoggerEncode.Object, store);
+            var settings = Settings.GetSettings();
+            var encodeController = new EncodeController(mockLoggerEncode.Object, settings, store);
             var followController = new FollowController(mockLoggerFollow.Object, store);
             var savedResult = encodeController.Encode(request);
 
@@ -41,7 +42,8 @@ namespace UrlShortener.Tests
             var mockLoggerEncode = new Mock<ILogger<EncodeController>>();
             var mockLoggerFollow = new Mock<ILogger<FollowController>>();
             var store = new Store();
-            var encodeController = new EncodeController(mockLoggerEncode.Object, store);
+            var settings = Settings.GetSettings();
+            var encodeController = new EncodeController(mockLoggerEncode.Object, settings, store);
             var followController = new FollowController(mockLoggerFollow.Object, store);
             var savedResult = encodeController.Encode(request);
 

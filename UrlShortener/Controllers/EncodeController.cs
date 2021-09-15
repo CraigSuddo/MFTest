@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Text.RegularExpressions;
@@ -13,11 +14,13 @@ namespace UrlShortener.Controllers
     {
         private readonly ILogger<EncodeController> _logger;
         private readonly IStore _store;
+        private readonly IConfiguration _config;
 
-        public EncodeController(ILogger<EncodeController> logger, IStore store)
+        public EncodeController(ILogger<EncodeController> logger, IConfiguration config, IStore store)
         {
             _logger = logger;
             _store = store;
+            _config = config;
         }
 
         [HttpPost]
@@ -42,13 +45,14 @@ namespace UrlShortener.Controllers
         }
 
         /// <summary>
-        /// Duplicates DTO
+        /// Creates a DTO object from a string code.
         /// </summary>
-        /// <param name="code"></param>
+        /// <param name="code">The code to put in the DTO.</param>
         /// <returns></returns>
         private ShortenedUrlDto GenerateDto(string code)
         {
-            return new ShortenedUrlDto() { ShortenedUrl = $"https://localhost:5001/{code}" };
+            var hostname = _config.GetValue<string>("ApplicationSettings:Hostname");
+            return new ShortenedUrlDto() { ShortenedUrl = $"{hostname}/{code}" };
 
         }
 

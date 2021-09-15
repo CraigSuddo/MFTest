@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Moq;
+using System.Collections.Generic;
 using UrlShortener.Controllers;
 using UrlShortener.Dtos;
 using UrlShortener.Logic;
@@ -18,8 +20,10 @@ namespace UrlShortener.Tests
             var mockLoggerEncode = new Mock<ILogger<EncodeController>>();
             var mockLoggerDecode = new Mock<ILogger<DecodeController>>();
             var store = new Store();
-            var encodeController = new EncodeController(mockLoggerEncode.Object, store);
-            var decodeController = new DecodeController(mockLoggerDecode.Object, store);
+            var config = Settings.GetSettings();
+
+            var encodeController = new EncodeController(mockLoggerEncode.Object, config, store);
+            var decodeController = new DecodeController(mockLoggerDecode.Object, config, store);
             var savedResult = encodeController.Encode(request);
 
             // Act

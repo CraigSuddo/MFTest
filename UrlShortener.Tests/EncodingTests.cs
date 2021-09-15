@@ -19,7 +19,8 @@ namespace UrlShortener.Tests
             var request = new UrlDto() { Url = "http://www.google.com" };
             var mockLogger = new Mock<ILogger<EncodeController>>();
             var mockStore = new Mock<IStore>();
-            var controller = new EncodeController(mockLogger.Object, mockStore.Object);
+            var config = Settings.GetSettings();
+            var controller = new EncodeController(mockLogger.Object, config, mockStore.Object);
 
             // Act
             var result = controller.Encode(request);
@@ -37,7 +38,8 @@ namespace UrlShortener.Tests
             var requestB = new UrlDto() { Url = "http://www.musclefood.com" };
             var mockLogger = new Mock<ILogger<EncodeController>>();
             var mockStore = new Mock<IStore>();
-            var controller = new EncodeController(mockLogger.Object, mockStore.Object);
+            var config = Settings.GetSettings();
+            var controller = new EncodeController(mockLogger.Object, config, mockStore.Object);
 
             // Act
             var resultA = controller.Encode(requestA);
@@ -57,7 +59,8 @@ namespace UrlShortener.Tests
             var requestB = new UrlDto() { Url = "http://www.musclefood.com" };
             var mockLogger = new Mock<ILogger<EncodeController>>();
             var store = new Store();
-            var controller = new EncodeController(mockLogger.Object, store);
+            var settings = Settings.GetSettings();
+            var controller = new EncodeController(mockLogger.Object, settings, store);
 
             // Act
             var resultA = controller.Encode(requestA);
@@ -78,7 +81,8 @@ namespace UrlShortener.Tests
             var request = new UrlDto() { Url = "wrongurl" };
             var mockLogger = new Mock<ILogger<EncodeController>>();
             var store = new Store();
-            var controller = new EncodeController(mockLogger.Object, store);
+            var settings = Settings.GetSettings();
+            var controller = new EncodeController(mockLogger.Object, settings, store);
 
             // Act
             var result = controller.Encode(request);

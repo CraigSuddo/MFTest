@@ -29,6 +29,7 @@ namespace UrlShortener
 
             // Registering my Store as a Singleton so that it exists in memory as a single instance which can be used to mimic saving.
             services.AddSingleton<IStore, Store>();
+            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

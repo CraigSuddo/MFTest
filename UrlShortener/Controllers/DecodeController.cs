@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 using UrlShortener.Dtos;
@@ -11,18 +12,21 @@ namespace UrlShortener.Controllers
     public class DecodeController : ControllerBase
     {
         private readonly ILogger<DecodeController> _logger;
+        private readonly IConfiguration _config;
         private readonly IStore _store;
 
-        public DecodeController(ILogger<DecodeController> logger, IStore store)
+        public DecodeController(ILogger<DecodeController> logger, IConfiguration config, IStore store)
         {
             _logger = logger;
             _store = store;
+            _config = config;
         }
 
         [HttpPost]
         public UrlDto Decode(ShortenedUrlDto request)
         {
-            var regex = new Regex(@"(?!https:\/\/localhost:5001\/)([0-9a-zA-Z]{8,8})$");
+            var hostname = Regex.Escape(_config.GetValue<string>("ApplicationSettings:Hostname"));
+            var regex = new Regex(@"(?!"+hostname+")([0-9a-zA-Z]{8,8})$");
             var matches = regex.Matches(request.ShortenedUrl);
             if (matches.Count == 0)
                 return null;
