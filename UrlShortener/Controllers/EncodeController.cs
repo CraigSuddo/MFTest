@@ -53,7 +53,6 @@ namespace UrlShortener.Controllers
         {
             var hostname = _config.GetValue<string>("ApplicationSettings:Hostname");
             return new ShortenedUrlDto() { ShortenedUrl = $"{hostname}/{code}" };
-
         }
 
         /// <summary>
