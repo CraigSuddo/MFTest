@@ -6,7 +6,7 @@ namespace UrlShortener.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Obsolete("This class is in the test project; not sure of it's purpose!")]
+    [Obsolete("This class is in the downloaded project; not sure of it's purpose!")]
     public class StatusController : ControllerBase
     {
         private readonly ILogger<StatusController> _logger;
